@@ -810,8 +810,8 @@ require('lazy').setup({
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
-        -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-        vim.cmd.colorscheme 'gruvbox'
+      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+      vim.cmd.colorscheme 'gruvbox'
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
@@ -1053,7 +1053,30 @@ require('lazy').setup({
       require('neoclip').setup()
     end,
   },
+  { -- competitest.nvim can manage and check testcases, download problems and contests from online judges and much more for Neovim
+    'xeluxee/competitest.nvim',
+    dependencies = 'MunifTanjim/nui.nvim',
+    config = function()
+      require('competitest').setup()
+    end,
+  },
+  { -- leetcode.nvim enables you to solve LeetCode problems in Neovim
+    'kawre/leetcode.nvim',
+    build = ':TSUpdate html',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+      'nvim-lua/plenary.nvim', -- required by telescope
+      'MunifTanjim/nui.nvim',
 
+      -- optional
+      'nvim-treesitter/nvim-treesitter',
+      'rcarriga/nvim-notify',
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      -- configuration goes here
+    },
+  },
   -- FLAG: add plugins here.
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
