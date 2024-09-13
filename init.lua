@@ -1,5 +1,5 @@
 --[[
-[]
+
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
 =====================================================================
@@ -206,7 +206,6 @@ end)
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
-
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
@@ -804,14 +803,14 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'ellisonleao/gruvbox.nvim',
+    'Shatur/neovim-ayu',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     terminal_colors = true, -- add neovim terminal colors
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'gruvbox'
+      vim.cmd.colorscheme 'ayu'
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
@@ -1049,6 +1048,19 @@ require('lazy').setup({
     dependencies = {
       { 'nvim-telescope/telescope.nvim' },
     },
+    keys = {
+      telescope = {
+        i = {
+          select = '<cr>',
+          paste = '<c-p>',
+          paste_behind = '<c-k>',
+          replay = '<c-q>', -- replay a macro
+          delete = '<c-d>', -- delete an entry
+          edit = '<c-e>', -- edit an entry
+          custom = {},
+        },
+      },
+    },
     config = function()
       require('neoclip').setup()
     end,
@@ -1075,6 +1087,20 @@ require('lazy').setup({
     },
     opts = {
       -- configuration goes here
+    },
+  },
+  {
+    'cbochs/grapple.nvim',
+    opts = {
+      scope = 'git', -- also try out "git_branch"
+    },
+    event = { 'BufReadPost', 'BufNewFile' },
+    cmd = 'Grapple',
+    keys = {
+      { '<leader>m', '<cmd>Grapple toggle<cr>', desc = 'Grapple toggle tag' },
+      { '<leader>M', '<cmd>Grapple toggle_tags<cr>', desc = 'Grapple open tags window' },
+      { '<leader>n', '<cmd>Grapple cycle_tags next<cr>', desc = 'Grapple cycle next tag' },
+      { '<leader>p', '<cmd>Grapple cycle_tags prev<cr>', desc = 'Grapple cycle previous tag' },
     },
   },
   -- FLAG: add plugins here.
